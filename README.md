@@ -15,3 +15,8 @@ A simple single-player game
 - format the text in HTML to be structured as how it looks in wireframe sketch.
 
 ## JS
+- create game board
+
+## API
+- authenticate form for sign-up
+- authenticate form for Login
