@@ -18,5 +18,5 @@ A simple single-player game
 - create game board
 
 ## API
-- authenticate form for sign-up
-- authenticate form for Login
+- authenticate sign-up
+- authenticate Login
