@@ -8,7 +8,7 @@ curl "https://tic-tac-toe-wdi.herokuapp.com/update" \
 --data '{
   "game": {
     "cell": {
-      "index": 0, 1, 2, 3, 4, 5, 6, 7, 8,
+      "index": [0, 1, 2, 3, 4, 5, 6, 7, 8],
       "value":"x"
     },
     "over": false
