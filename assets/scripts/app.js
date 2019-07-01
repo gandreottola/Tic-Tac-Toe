@@ -14,6 +14,5 @@ $(() => {
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#change-password').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('click', authEvents.onSignOut)
-  $('.cell').one('click', gameEvents.onCellClick)
-  $('.cell').one('click', gameEvents.onCheckForMatch)
+  $('.cell').on('click', gameEvents.onMove)
 })
