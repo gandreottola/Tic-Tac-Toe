@@ -21,15 +21,15 @@ const failureMessage = message => {
 }
 
 const signUpSuccessful = responseData => {
-  successMessage('You are ready to play!')
+  successMessage('Sign up successfull')
 }
 
 const signUpFailure = () => {
-  failureMessage('I believe you made a mistake, try again!')
+  failureMessage('Sign up failed!')
 }
 
 const signInSuccessful = responseData => {
-  successMessage('Nice to see you again!')
+  successMessage('Sign in successfull')
 
   // keeping track of the user, so we can have the token for the api
   // we use 'store' so we can access the token in any file
@@ -37,23 +37,23 @@ const signInSuccessful = responseData => {
 }
 
 const signInFailure = () => {
-  failureMessage('I believe you made a mistake, try again!')
+  failureMessage('Sign in failed')
 }
 
 const changePasswordSuccessful = responseData => {
-  successMessage('Your password was changed successfully')
+  successMessage('Password has successfully changed')
 }
 
 const changePasswordFailure = () => {
-  failureMessage('Password change failed')
+  failureMessage('Password change has failed!')
 }
 
 const signOutSuccessful = responseData => {
-  successMessage('Too bad you have to go, see you next time!')
+  successMessage('Sign out successful')
 }
 
 const signOutFailure = () => {
-  failureMessage('I believe you made a mistake, try again!')
+  failureMessage('Sign out failed!')
 }
 
 module.exports = {
