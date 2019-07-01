@@ -1,46 +1,55 @@
 'use strict'
 
-// const api = require('./api')
-// const ui = require('./ui')
+const api = require('./api')
+const ui = require('./ui')
 
-let player = 'O'
+let currentPlayer = 'x'
+const cells = ['', '', '', '', '', '', '', '', '']
 
-const onCellClick = event => {
+// when cell is clicked
+const onMove = event => {
   event.preventDefault()
+  const cellId = event.target.id
+  console.log(cells[cellId])
 
-  const cell = $(event.target).val('#id')
-  // console.log(cell)
-  cell.text(player)
-
-  if (player === 'X') {
-    player = 'O'
-    cell.text(player)
-  } else if (player === 'O') {
-    player = 'X'
-    cell.text(player)
+  // if not empty, display message to user
+  if (cells[cellId] !== '') {
+    ui.invalidMove()
+    // if its empty:
+    // put current players's token on board
+    // update api
+    // switch players
+  } else {
+    $(event.target).text(currentPlayer)
+    cells[cellId] = currentPlayer
+    const gameOver = checkGameOver()
+    api.update(currentPlayer, cellId, gameOver)
+      .then(ui.updateSuccessful)
+      .catch(ui.updateFailure)
+    if (currentPlayer === 'x') {
+      currentPlayer = 'o'
+    } else {
+      currentPlayer = 'x'
+    }
   }
-
-  // api.CellClick(player)
-  // .then(ui.cellClickSuccessful)
-  // .catch(ui.cellClickFailure)
 }
 
-const cells = []
-
-const onCheckForMatch = event => {
-  event.preventDefault()
-
-  const cellId = cells[event.target.id]
-  const cellIndex = $(event.target).index(cellId)
-  const cell = [cellIndex]
-  console.log(cellIndex)
-
-  if (cell[1] && player === 'X') {
-    console.log('test')
+// check for win or tie
+const checkGameOver = () => {
+  if ((cells[0] && cells[0] === cells[1] && cells[1] === cells[2]) ||
+     (cells[3] && cells[3] === cells[4] && cells[4] === cells[5]) ||
+     (cells[6] && cells[6] === cells[7] && cells[7] === cells[8]) ||
+     (cells[0] && cells[0] === cells[3] && cells[3] === cells[6]) ||
+     (cells[1] && cells[1] === cells[4] && cells[4] === cells[7]) ||
+     (cells[2] && cells[2] === cells[5] && cells[5] === cells[8]) ||
+     (cells[0] && cells[0] === cells[4] && cells[4] === cells[8]) ||
+     (cells[2] && cells[2] === cells[4] && cells[4] === cells[6])) {
+    return true
+  } else {
+    return false
   }
 }
 
 module.exports = {
-  onCellClick,
-  onCheckForMatch
+  onMove
 }
