@@ -1,6 +1,6 @@
 'use strict'
 
-const api = require('./api')
+// const api = require('./api')
 const ui = require('./ui')
 
 let currentPlayer = 'x'
@@ -22,14 +22,16 @@ const onMove = event => {
   } else {
     $(event.target).text(currentPlayer)
     cells[cellId] = currentPlayer
-    const gameOver = checkGameOver()
-    api.update(currentPlayer, cellId, gameOver)
-      .then(ui.updateSuccessful)
-      .catch(ui.updateFailure)
+    checkGameOver()
+    // api.update(currentPlayer, cellId, gameOver)
+    // .then(ui.updateSuccessful)
+    // .catch(ui.updateFailure)
     if (currentPlayer === 'x') {
       currentPlayer = 'o'
+      $('#message').text(`Player ${currentPlayer} turn`)
     } else {
       currentPlayer = 'x'
+      $('#message').text(`Player ${currentPlayer} turn`)
     }
   }
 }
