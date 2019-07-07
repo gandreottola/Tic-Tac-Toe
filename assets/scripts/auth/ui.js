@@ -30,7 +30,11 @@ const signUpFailure = () => {
 
 const signInSuccessful = responseData => {
   successMessage('Sign in successfull')
-
+  $('#game-create').show()
+  $('#change-password').show()
+  $('#sign-out').show()
+  $('#sign-in').hide()
+  $('#sign-up').hide()
   // keeping track of the user, so we can have the token for the api
   // we use 'store' so we can access the token in any file
   store.user = responseData.user
