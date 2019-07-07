@@ -1,6 +1,6 @@
 # VARIABLE=VALUE sh curl-scripts/game/update.sh
 
-curl "https://tic-tac-toe-wdi.herokuapp.com/update" \
+curl "https://tic-tac-toe-wdi.herokuapp.com/games/${ID}" \
 --include \
 --request PATCH \
 --header "Authorization: Token token=${TOKEN}" \
@@ -8,9 +8,11 @@ curl "https://tic-tac-toe-wdi.herokuapp.com/update" \
 --data '{
   "game": {
     "cell": {
-      "index": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      "value":"x"
+      "index": "'"${INDEX}"'",
+      "value": "'"${VALUE}"'"
     },
-    "over": false
+    "over": "'"${OVER}"'"
   }
 }'
+
+    echo

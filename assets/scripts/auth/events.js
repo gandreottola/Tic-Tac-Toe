@@ -4,6 +4,9 @@ const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 
+$('#change-password').hide()
+$('#sign-out').hide()
+
 const onSignUp = event => {
   event.preventDefault()
 
