@@ -31,7 +31,29 @@ const create = () => {
   })
 }
 
+const show = () => {
+  return $.ajax({
+    url: config.apiUrl + `/games/${store.game.id}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
+const index = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   update,
-  create
+  create,
+  show,
+  index
 }
