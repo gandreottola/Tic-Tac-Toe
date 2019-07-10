@@ -4,48 +4,48 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 
-let currentPlayer = store.currentPlayer = 'x'
-let cells = store.cells
-cells = ['', '', '', '', '', '', '', '', '']
+store.currentPlayer = 'x'
+store.cells = ['', '', '', '', '', '', '', '', '']
 $('#game-create').hide()
 $('.cell').hide()
+$('#game-show').hide()
 
 // when cell is clicked
 const onMove = event => {
   event.preventDefault()
+
   const cellId = event.target.id
 
-  // if not empty, display message to user
-  if (cells[cellId] !== '') {
+  if (store.cells[cellId] !== '') {
     ui.invalidMove()
-    // if its empty:
+  // if its empty:
+  // put current players's token on board
   } else {
-    // put current players's token on board
-    $(event.target).text(currentPlayer)
-    cells[cellId] = currentPlayer
-    let gameOver = store.gameOver
-    gameOver = checkGameOver()
-    // update api\
-    api.update(currentPlayer, cellId, gameOver)
+    $(event.target).text(store.currentPlayer)
+    store.cells[cellId] = store.currentPlayer
+    const gameOver = checkGameOver()
+    // update api
+    api.update(store.currentPlayer, cellId, gameOver)
       .then(ui.updateSuccessful)
       .catch(ui.updateFailure)
     // switch players
-    if (currentPlayer === 'x') {
-      currentPlayer = 'o'
-      $('#message').text(`Player ${currentPlayer} turn`)
+    if (store.currentPlayer === 'x') {
+      store.currentPlayer = 'o'
+      $('#message').text(`Player o turn`)
     } else {
-      currentPlayer = 'x'
-      $('#message').text(`Player ${currentPlayer} turn`)
+      store.currentPlayer = 'x'
+      $('#message').text(`Player x turn`)
     }
   }
 }
+
 // create new game
 const onNewGame = event => {
   event.preventDefault()
   // reset's game board
-  cells = ['', '', '', '', '', '', '', '', '']
+  store.cells = ['', '', '', '', '', '', '', '', '']
   $('.cell').empty('reset').text('')
-  currentPlayer = 'x'
+  store.currentPlayer = 'x'
   if ($('.cell').off('click', onMove) !== false) {
     $('.cell').on('click', onMove)
   }
@@ -56,36 +56,46 @@ const onNewGame = event => {
     .then(ui.createSuccessful)
     .catch(ui.createFailure)
 }
+
+// show number of games played
+const onShowGames = event => {
+  event.preventDefault()
+  api.index()
+    .then(ui.indexSuccessful)
+    .catch(ui.indexFailure)
+}
+
+// cell click error
+const onClick = () => {
+  if (store.gameOver === true) {
+    ui.gameOver()
+  }
+}
+
 // check for win or tie
 const checkGameOver = () => {
-  // if ($('.cell').off('click', onMove) !== false) {
-  //  $('.cell').on('click', onMove)
-  //  currentPlayer = 'x'
-  // }
-
-  if ((cells[0] && cells[0] === cells[1] && cells[1] === cells[2]) ||
-     (cells[3] && cells[3] === cells[4] && cells[4] === cells[5]) ||
-     (cells[6] && cells[6] === cells[7] && cells[7] === cells[8]) ||
-     (cells[0] && cells[0] === cells[3] && cells[3] === cells[6]) ||
-     (cells[1] && cells[1] === cells[4] && cells[4] === cells[7]) ||
-     (cells[2] && cells[2] === cells[5] && cells[5] === cells[8]) ||
-     (cells[0] && cells[0] === cells[4] && cells[4] === cells[8]) ||
-     (cells[2] && cells[2] === cells[4] && cells[4] === cells[6])) {
-    if (cells.length >= 3) {
-      console.log('win!')
-      $('.cell').off('click')
-      $('.cell').on('click', checkGameOver)
-      ui.invalidMove()
-      return true
+  if ((store.cells[3] && store.cells[3] === store.cells[4] && store.cells[4] === store.cells[5]) ||
+     (store.cells[6] && store.cells[6] === store.cells[7] && store.cells[7] === store.cells[8]) ||
+     (store.cells[0] && store.cells[0] === store.cells[3] && store.cells[3] === store.cells[6]) ||
+     (store.cells[1] && store.cells[1] === store.cells[4] && store.cells[4] === store.cells[7]) ||
+     (store.cells[2] && store.cells[2] === store.cells[5] && store.cells[5] === store.cells[8]) ||
+     (store.cells[0] && store.cells[0] === store.cells[4] && store.cells[4] === store.cells[8]) ||
+     (store.cells[2] && store.cells[2] === store.cells[4] && store.cells[4] === store.cells[6])) {
+    if (store.cells.length >= 3) {
+      ui.win()
+      $('.cell').off('click', onMove)
+      store.gameOver = true
     }
-  } else if (cells.every(id => id !== '')) {
-    console.log('tie!')
-    return true
+  } else if (store.cells.every(id => id !== '')) {
+    ui.tie()
+    store.gameOver = true
   } else {
-    return false
+    store.gameOver = false
   }
 }
 module.exports = {
   onMove,
-  onNewGame
+  onNewGame,
+  onShowGames,
+  onClick
 }
