@@ -6,6 +6,7 @@ const ui = require('./ui')
 
 $('#change-password').hide()
 $('#sign-out').hide()
+$('#settings').hide()
 
 const onSignUp = event => {
   event.preventDefault()
@@ -25,6 +26,10 @@ const onSignIn = event => {
   api.signIn(formData)
     .then(ui.signInSuccessful)
     .catch(ui.signInFailure)
+}
+
+const onSettings = () => {
+  ui.settings()
 }
 
 const onChangePassword = event => {
@@ -49,5 +54,6 @@ module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  onSettings
 }

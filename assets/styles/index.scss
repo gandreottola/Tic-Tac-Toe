@@ -1,24 +1,140 @@
 @import '~bootstrap/scss/bootstrap';
 
 .title {
-  display: flex;
-  justify-content: center;
+  color: #650A2F;
+  text-decoration: underline overline black;
+  font-size: 80px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
-.grid {
-  display: grid;
-  grid-gap: 0;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  height: 400px;
-  width: 400px;
+.login-page {
+    height: 300px;
+    width: 650px;
 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -330px;
 }
 
-.cell {
-  border-style: solid;
-  display: flex;
-  font-size: 20px;
-  justify-content: center;
-  padding: 0;
+.sign-up {
+  padding: 10px;
 }
+
+.sign-in {
+  padding: 10px;
+  margin-top: 50px;
+}
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 5px;
+  margin-left: -42px;
+}
+
+.signup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -50px;
+}
+
+body {
+  text-align: center;
+  background-color: #06586A;
+}
+
+button {
+  background-color: #06586A;
+  color: #A35A02;
+  font-weight: bold;
+  font-size: 25px;
+  border: 0;
+}
+
+button:hover {
+box-shadow: 0 12px 16px 0 rgba(128,0,128,0.60);
+}
+
+.signin-settings {
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 500px;
+}
+
+.settings {
+position: fixed;
+height: 40px;
+width: 100px;
+margin-top: -10px;
+margin-left: 500px;
+}
+
+.sign-out {
+  margin-top: 20px;
+  margin-left: -170px;
+}
+
+.back-to-game {
+  margin-top: 20px;
+}
+
+.alert {
+  position: fixed;
+  text-align: left;
+  color: black;
+  height: 100px;
+  width: 250px;
+  margin-top: -30px;
+  margin-left: 100px;
+}
+
+.alert2 {
+  position: fixed;
+  height: 50px;
+  width: 100px;
+}
+
+.col-2 {
+  height: 50px;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.board {
+  position: fixed;
+  margin: 30px 500px;
+}
+
+table {
+  border-collapse: collapse;
+  position: fixed;
+}
+
+td {
+  border: 2px dashed white;
+  height: 150px;
+  width: 150px;
+  font-size: 70px;
+  }
+
+  table tr:first-child td {
+    border-top: 0;
+  }
+
+  table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  table tr td:first-child {
+    border-left: 0;
+  }
+
+table tr td:last-child {
+  border-right: 0;
+  }

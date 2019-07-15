@@ -12,54 +12,63 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <header class="title">
-        <h1>Tic-Tac-Toe</h1>
+      <header>
+        <h1 class="title">Tic-Tac-Toe</h1>
       </header>
 
       <main>
         <h3 id="message" class="alert"></h3>
-        <h3 id="message2" class="alert"></h3>
 
-      <section>
-        <form id="sign-up">
+<div class="login-page">
+        <form class="sign-up" id="sign-up">
           <input type="email" name="credentials[email]" placeholder="Email">
           <input type="password" name="credentials[password]" placeholder="Password">
           <input type="password" name="credentials[password_confirmation]" placeholder="Confirm password">
-          <button>Sign Up</button>
+          <button class="signup">Sign Up</button>
         </form>
 
-        <form id="sign-in">
+        <form class="sign-in" id="sign-in">
           <input type="email" name="credentials[email]" placeholder="Email">
           <input type="password" name="credentials[password]" placeholder="Password">
-          <button>Login</button>
+          <button class="login">Login</button>
         </form>
-        </section>
+</div>
 
-        <div>
-          <button id="sign-out">Sign Out</button>
-
+<button class="settings" id="settings">Settings</button>
+        <div class="signin-settings">
         <form id="change-password">
           <input type="password" name="passwords[old]" placeholder="Old Password">
           <input type="password" name="passwords[new]" placeholder="New Password">
-          <button>Change Password</button>
+          <button class="password">Change Password</button>
         </form>
-     </div>
+        <button class="sign-out" id="sign-out">Sign Out</button>
+        </div>
 
-<button id="game-create">New Game</button>
-<button id="game-show">Games Played</button>
+<button class="col-2" id="game-create">New Game</button>
+<button class="col-2" id="game-show">Games Played</button>
 
-      <section class="grid">
-          <div class="cell" id="0" ></div>
-          <div class="cell" id="1" ></div>
-          <div class="cell" id="2" ></div>
-          <div class="cell" id="3" ></div>
-          <div class="cell" id="4" ></div>
-          <div class="cell" id="5" ></div>
-          <div class="cell" id="6" ></div>
-          <div class="cell" id="7" ></div>
-          <div class="cell" id="8" ></div>
-    </section>
+<h3 id="message2" class="alert1"></h3>
 
+<button class="back-to-game" id="back">Back To Game</button>
+      <div class="board">
+        <table>
+        <tr>
+          <td class="cell" id="0"></td>
+          <td class="cell" id="1"></td>
+          <td class="cell" id="2"></td>
+        </tr>
+        <tr>
+          <td class="cell" id="3"></td>
+          <td class="cell" id="4"></td>
+          <td class="cell" id="5"></td>
+        </tr>
+          <tr>
+          <td class="cell" id="6"></td>
+          <td class="cell" id="7"></td>
+          <td class="cell" id="8"></td>
+        </tr>
+      </table>
+    </div>
       </main>
     </body>
 </html>
