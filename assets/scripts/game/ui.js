@@ -2,74 +2,78 @@
 
 const store = require('../store')
 
-const invalidMove = () => {
-  $('#message2').text('INVALID MOVE: Choose empty spot').show()
-  setTimeout(() => { $('#message2').hide() }, 5000)
+const successMessage = message => {
+  $('#message').text(message).show()
+  $('#message').removeClass('failure')
+  $('#message').addClass('success')
+}
+
+const failureMessage = message => {
+  $('#message').text(message).show()
+  $('#message').removeClass('success')
+  $('#message').addClass('failure')
 }
 
 const gameOver = () => {
-  $('#message').text('Game Over').show()
-  setTimeout(() => { $('#message').hide() }, 5000)
+  successMessage(`Game Over, click 'New Game' to play again!`)
 }
 
 const win = () => {
   store.gameOver = true
-  $('#message2').text(`${store.currentPlayer} Wins! Click 'New Game' to play again`).show()
-  setTimeout(() => { $('#message2').hide() }, 5000)
+  $('#message2').text(`${store.currentPlayer} Wins!`).show()
 }
 
 const tie = () => {
   store.gameOver = true
-  $('#message2').text(`It's a tie! Click 'New Game' to play again`).show()
-  setTimeout(() => { $('#message2').hide() }, 5000)
+  $('#message2').text(`It's a tie!`).show()
+}
+
+const invalidMove = () => {
+  successMessage('INVALID MOVE: choose empty spot')
+}
+
+const playerSwitch = () => {
+  successMessage(`player ${store.currentPlayer} turn`)
+  if (store.gameOver === true) {
+    gameOver()
+  }
+}
+
+const back = () => {
+  $('#game-create').show()
+  $('#game-show').show()
+  $('#settings').show()
+  $('#back').hide()
+  $('#sign-out').hide()
+  $('#change-password').hide()
 }
 
 const createSuccessful = gameData => {
-  $('#message').text(`New game created: x move first`)
-  $('#message').removeClass('failure')
-  $('#message').addClass('success')
+  successMessage(`New game created: X move first`)
   store.game = gameData.game
 }
 
 const createFailure = () => {
-  $('#message').text('failed')
-  $('#message').removeClass('success')
-  $('#message').addClass('failure')
+  failureMessage('failed')
 }
 
 const updateSuccessful = gameData => {
-  $('#message').removeClass('failure')
-  $('#message').addClass('success')
+  successMessage()
 }
 
 const updateFailure = () => {
-  $('#message').text('failed')
-  $('#message').removeClass('success')
-  $('#message').addClass('failure')
+  failureMessage('failed')
 }
 
 const indexSuccessful = gameData => {
-  $('#message').text(`You have played ${gameData.games.length} games`)
-  $('#message').removeClass('failure')
-  $('#message').addClass('success')
+  successMessage(`You played ${gameData.games.length} games`)
+  setTimeout(() => { $('#message').hide() }, 5000)
 }
 
 const indexFailure = () => {
-  $('#message').text('failed')
-  $('#message').removeClass('success')
-  $('#message').addClass('failure')
+  failureMessage('failed')
 }
 
-const showSuccessful = gameData => {
-  $('#message').removeClass('failure')
-  $('#message').addClass('success')
-}
-
-const showFailure = () => {
-  $('#message').text('failed')
-  $('#message').removeClass('success')
-  $('#message').addClass('failure')
-}
 module.exports = {
   invalidMove,
   createSuccessful,
@@ -78,9 +82,9 @@ module.exports = {
   updateFailure,
   indexSuccessful,
   indexFailure,
-  showSuccessful,
-  showFailure,
   gameOver,
   win,
-  tie
+  tie,
+  playerSwitch,
+  back
 }
