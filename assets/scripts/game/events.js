@@ -31,9 +31,9 @@ const onMove = event => {
   } else {
     $(event.target).text(store.currentPlayer)
     store.cells[cellId] = store.currentPlayer
-    const gameOver = checkGameOver()
+    checkGameOver()
     // update api
-    api.update(store.currentPlayer, cellId, gameOver)
+    api.update(store.currentPlayer, cellId, store.gameOver)
       .then(ui.updateSuccessful)
       .catch(ui.updateFailure)
     // switch players

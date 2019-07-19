@@ -70,7 +70,7 @@ const signOutSuccessful = responseData => {
   successMessage('Sign out successful')
   $('#game-create').hide()
   $('#game-show').hide()
-  $('.board').hide()
+  $('.cell').hide()
   $('#sign-out').hide()
   $('#change-password').hide()
   $('#settings').hide()
