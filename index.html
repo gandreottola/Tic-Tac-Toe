@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic-Tac-Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <header>
+        <h1 class="title">Tic-Tac-Toe</h1>
+      </header>
+
+      <main>
+        <h3 id="message" class="alert"></h3>
+
+<div class="login-page">
+        <form class="sign-up" id="sign-up">
+          <input type="email" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm password">
+          <button class="signup">Sign Up</button>
+        </form>
+
+        <form class="sign-in" id="sign-in">
+          <input type="email" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <button class="login">Login</button>
+        </form>
+</div>
+
+<button class="settings" id="settings">Settings</button>
+        <div class="signin-settings">
+        <form id="change-password">
+          <input type="password" name="passwords[old]" placeholder="Old Password">
+          <input type="password" name="passwords[new]" placeholder="New Password">
+          <button class="password">Change Password</button>
+        </form>
+        <button class="sign-out" id="sign-out">Sign Out</button>
+        </div>
+
+<button class="col-2" id="game-create">New Game</button>
+<button class="col-2" id="game-show">Games Played</button>
+
+<h3 id="message2" class="alert1"></h3>
+
+<button class="back-to-game" id="back">Back To Game</button>
+      <div class="board">
+        <table>
+        <tr>
+          <td class="cell" id="0"></td>
+          <td class="cell" id="1"></td>
+          <td class="cell" id="2"></td>
+        </tr>
+        <tr>
+          <td class="cell" id="3"></td>
+          <td class="cell" id="4"></td>
+          <td class="cell" id="5"></td>
+        </tr>
+          <tr>
+          <td class="cell" id="6"></td>
+          <td class="cell" id="7"></td>
+          <td class="cell" id="8"></td>
+        </tr>
+      </table>
+    </div>
+      </main>
+    </body>
+</html>
